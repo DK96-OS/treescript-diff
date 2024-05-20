@@ -27,37 +27,40 @@ def parse_arguments(args: Optional[list[str]] = None) -> ArgumentData:
     # Initialize the Parser and Parse Immediately
     try:
         parsed_args = _define_arguments().parse_args(args)
+        return _validate_arguments(parsed_args)
     except SystemExit as e:
         exit("Unable to Parse Arguments.")
-    #
-    return _validate_arguments(
-        parsed_args.original,
-        parsed_args.updated,
-    )
 
 
 def _validate_arguments(
-    original: str,
-    updated: str,
+    parsed_arguments
 ) -> ArgumentData:
     """
     Checks the values received from the ArgParser.
         Uses Validate Name method from StringValidation.
 
     Parameters:
-    - original (str): The name of the original file
-    - updated (str): The name of the updated file
+    - parsed_arguments : The object returned by the ArgmentParser.
 
     Returns:
     ArgumentData - A DataClass of syntactically correct arguments.
     """
+    original = parsed_arguments.original
+    updated = parsed_arguments.updated
     if not validate_name(original):
         exit("The original argument was invalid.")
     if not validate_name(updated):
         exit("The updated argument was invalid.")
+    # Determine diff output
+    if parsed_arguments.added or parsed_arguments.removed:
+        diff_output = parsed_arguments.added
+    else:
+        diff_output = None
+    #
     return ArgumentData(
         original=original,
         updated=updated,
+        diff_output=diff_output,
     )
 
 
@@ -76,11 +79,23 @@ def _define_arguments() -> ArgumentParser:
     parser.add_argument(
         'original',
         type=str,
-        help='The original TreeScript.'
+        help='The original TreeScript.',
     )
     parser.add_argument(
         'updated',
         type=str,
         help='The updated TreeScript.',
+    )
+    parser.add_argument(
+        "--added", '-a',
+        action='store_true',
+        default=False,
+        help='Whether to show added files.',
+    )
+    parser.add_argument(
+        "--removed", '-r',
+        action='store_true',
+        default=False,
+        help='Whether to show deleted files.',
     )
     return parser

@@ -11,3 +11,5 @@ class InputData:
     original_tree: str
     #
     updated_tree: str
+    #
+    diff_output: bool | None = None

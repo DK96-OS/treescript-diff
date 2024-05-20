@@ -12,8 +12,10 @@ class ArgumentData:
 
     Fields:
     - original (str) : The initial TreeScript.
-    - updated (str): The updated TreeScript.
+    - updated (str) : The updated TreeScript.
+    - diff_output (bool | None) : A flag indicating the type of output.
     """
 
     original: str = True
     updated: str = True
+    diff_output: bool | None = None

@@ -17,4 +17,5 @@ def validate_arguments(args: list[str]) -> InputData:
     return InputData(
         original_tree=original_tree,
         updated_tree=updated,
+        diff_output=arg_data.diff_output,
     )
