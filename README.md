@@ -20,7 +20,15 @@ The program will return the diff in this structure:
 3. deleted files
 
 ### Additions Only
-Use the argument: `--add`
+Use the argument: `--added`
 
-### Deletions Only
-Use the argument: `--del`
+```bash
+treescript-diff <file1> <file2> --added
+```
+
+### Removals Only
+Use the argument: `--removed`
+
+```bash
+treescript-diff <file1> <file2> --removed
+```
