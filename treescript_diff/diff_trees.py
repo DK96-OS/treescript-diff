@@ -7,11 +7,14 @@ from .dictionary_files_diff import load_original, compare_files
 
 def diff_trees_additions(a: str, b: str) -> Generator[str, None, None]:
     """
-    The difference between two TreeScript strings.
+    The TreeScript files that were added from a to b.
 
     Parameters:
     - a (str) : The original TreeScript.
     - b (str) : The updated TreeScript.
+
+    Returns:
+    Generator[str] - yields elements of the diff.
     """
     # Use Dictionary-based Algorithm
     files = load_original(a)
@@ -20,11 +23,14 @@ def diff_trees_additions(a: str, b: str) -> Generator[str, None, None]:
 
 def diff_trees_removals(a: str, b: str) -> Generator[str, None, None]:
     """
-    The difference between two TreeScript strings.
+    The TreeScript files that were removed from a to b.
 
     Parameters:
     - a (str) : The original TreeScript.
     - b (str) : The updated TreeScript.
+
+    Returns:
+    Generator[str] - yields elements of the diff.
     """
     yield from diff_trees_additions(b, a)
 

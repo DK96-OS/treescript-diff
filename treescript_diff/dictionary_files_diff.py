@@ -1,4 +1,4 @@
-"""The methods of a dictionary based algorithm to
+"""The methods of a dictionary-files based diff algorithm.
 """
 from typing import Generator
 
