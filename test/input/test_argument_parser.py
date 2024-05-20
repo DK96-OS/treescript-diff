@@ -1,4 +1,4 @@
-"""Testing Module Methods
+"""Testing Argument Parser Methods
 """
 import pytest
 
@@ -16,7 +16,7 @@ from treescript_diff.input.argument_parser import parse_arguments
         (['origin', 'update', '-r'], ArgumentData('origin', 'update', False)),
     ]
 )
-def test_parse_args_returns_input(test_input, expected):
+def test_parse_arguments_returns_input(test_input, expected):
 	assert parse_arguments(test_input) == expected
 
 
@@ -32,7 +32,7 @@ def test_parse_args_returns_input(test_input, expected):
         (['origin', 'updated', '--unknown']),
     ]
 )
-def test_parse_args_raises_exit(test_input):
+def test_parse_arguments_raises_exit(test_input):
 	try:
 		parse_arguments(test_input)
 		assert False
