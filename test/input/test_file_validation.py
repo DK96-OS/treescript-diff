@@ -26,7 +26,7 @@ def test_validate_input_file_does_not_exist_raises_exit():
         try:
             validate_input_file("file_name")
             assert False
-        except SystemExit as e:
+        except SystemExit:
             assert True
 
 
@@ -37,7 +37,7 @@ def test_validate_input_file_is_empty_raises_exit():
         try:
             validate_input_file("file_name")
             assert False
-        except SystemExit as e:
+        except SystemExit:
             assert True
 
 
@@ -50,7 +50,7 @@ def test_validate_input_file_fails_to_read_raises_exit():
         try:
             validate_input_file("file_name")
             assert False
-        except SystemExit as e:
+        except SystemExit:
             assert True
 
 
