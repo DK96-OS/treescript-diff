@@ -28,7 +28,7 @@ def parse_arguments(args: Optional[list[str]] = None) -> ArgumentData:
     try:
         parsed_args = _define_arguments().parse_args(args)
         return _validate_arguments(parsed_args)
-    except SystemExit as e:
+    except SystemExit:
         exit("Unable to Parse Arguments.")
 
 

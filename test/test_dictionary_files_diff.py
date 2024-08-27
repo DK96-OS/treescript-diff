@@ -22,13 +22,6 @@ def test_compare_files_simple_tree():
     assert len(result) == 0
 
 
-def test_compare_files_simple_tree():
-    original = load_original(get_simple_tree())
-    updated = get_simple_tree()
-    result = list(compare_files(original, updated))
-    assert len(result) == 0
-
-
 def test_compare_files_simple_tree_big_tree():
     original = load_original(get_simple_tree())
     updated = get_big_tree()
