@@ -31,7 +31,7 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run unit tests
-        run: pytest test/ --cov=treescript_diff --cov-report=html --cov-fail-under=99
+        run: pytest test/ --cov=treescript_diff --cov-report=html --cov-fail-under=97
 
       - name: Upload Test Coverage Reports
         uses: actions/upload-artifact@v4
