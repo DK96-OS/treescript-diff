@@ -31,10 +31,11 @@ jobs:
           pip install pytest pytest-cov
 
       - name: Run unit tests
-        run: pytest test/ --cov=treescript_diff --cov-report=html --cov-fail-under=95
+        run: pytest test/ --cov=treescript_diff --cov-report=html --cov-fail-under=99
 
       - name: Upload Test Coverage Reports
         uses: actions/upload-artifact@v4
+        if: ${{ always() }}
         with:
           name: treescript-diff-cov-${{ matrix.os }}-${{ matrix.python-version }}
           path: htmlcov/
