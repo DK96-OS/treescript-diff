@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload Test Coverage Reports
         uses: actions/upload-artifact@v4
-        if: ${{ always() }}
+        if: always()
         with:
           name: treescript-diff-cov-${{ matrix.os }}-${{ matrix.python-version }}
           path: htmlcov/
