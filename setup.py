@@ -16,7 +16,10 @@ setup(
         "Source Code": "https://github.com/DK96-OS/treescript-diff"
     },
     license="GPLv3",
-    packages=find_packages(exclude=['test']),
+    packages=find_packages(exclude=['test', 'test.*']),
+    install_requires=[
+        'treescript-files >= 0.2, < 0.3',
+    ],
     entry_points={
         'console_scripts': [
             'treescript-diff=treescript_diff.__main__:main',
@@ -34,5 +37,6 @@ setup(
         'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
+        'Programming Language :: Python :: 3.13',
     ],
 )
