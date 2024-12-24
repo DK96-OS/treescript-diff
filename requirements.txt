@@ -1,1 +1,1 @@
-treescript-files
+treescript-files ~= 0.2
