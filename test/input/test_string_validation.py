@@ -2,7 +2,7 @@
 """
 import pytest
 
-from treescript_diff.input.string_validation import validate_name
+from treescript_diff.input import _validate_name
 
 
 @pytest.mark.parametrize(
@@ -18,7 +18,7 @@ from treescript_diff.input.string_validation import validate_name
     ]
 )
 def test_validate_name_returns_false(test_input, expect):
-    assert validate_name(test_input) == expect
+    assert _validate_name(test_input) == expect
 
 
 @pytest.mark.parametrize(
@@ -30,4 +30,4 @@ def test_validate_name_returns_false(test_input, expect):
     ]
 )
 def test_validate_name_returns_true(test_input, expect):
-    assert validate_name(test_input) == expect
+    assert _validate_name(test_input) == expect
