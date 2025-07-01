@@ -1,4 +1,4 @@
-"""The Difference between Trees
+"""The Difference between Trees.
 """
 from typing import Generator
 
@@ -6,15 +6,14 @@ from .dictionary_files_diff import load_original, compare_files
 
 
 def diff_trees_additions(a: str, b: str) -> Generator[str, None, None]:
-    """
-    The TreeScript files that were added from a to b.
+    """ The TreeScript files that were added from a to b.
 
-    Parameters:
-    - a (str) : The original TreeScript.
-    - b (str) : The updated TreeScript.
+**Parameters:**
+ - a (str) : The original TreeScript.
+ - b (str) : The updated TreeScript.
 
-    Returns:
-    Generator[str] - yields elements of the diff.
+**Yields:**
+ str - yields elements of the diff.
     """
     # Use Dictionary-based Algorithm
     files = load_original(a)
@@ -22,29 +21,27 @@ def diff_trees_additions(a: str, b: str) -> Generator[str, None, None]:
 
 
 def diff_trees_removals(a: str, b: str) -> Generator[str, None, None]:
-    """
-    The TreeScript files that were removed from a to b.
+    """ The TreeScript files that were removed from a to b.
 
-    Parameters:
-    - a (str) : The original TreeScript.
-    - b (str) : The updated TreeScript.
+**Parameters:**
+ - a (str) : The original TreeScript.
+ - b (str) : The updated TreeScript.
 
-    Returns:
-    Generator[str] - yields elements of the diff.
+**Yields:**
+ Generator[str] - yields elements of the diff.
     """
     yield from diff_trees_additions(b, a)
 
 
 def diff_trees_double(a: str, b: str) -> tuple[list[str], list[str]]:
-    """
-    The difference between two TreeScript strings.
+    """ The difference between two TreeScript strings.
 
-    Parameters:
-    - a (str) : The original TreeScript.
-    - b (str) : The updated TreeScript.
+**Parameters:**
+ - a (str) : The original TreeScript.
+ - b (str) : The updated TreeScript.
 
-    Returns:
-    tuple[list[str], list[str]] - Container for the additions and removals.
+**Returns:**
+ tuple[list[str], list[str]] - Container for the additions and removals.
     """
     # Use Dictionary-based Algorithm
     files = load_original(a)
