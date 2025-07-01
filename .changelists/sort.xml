@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sorting>
+    <changelist name="Project Root" module="root">
+        <files first_dir="None" />
+    </changelist>
+    <changelist name="GitHub Workflows" module="hidden">
+        <files path_start=".github/workflows/" />
+        <files file_ext="yml" />
+    </changelist>
+    <changelist name="Input Package">
+        <files path_start="treescript_diff/input" />
+        <files file_ext="py" />
+    </changelist>
+    <changelist name="TreeScript-Diff Package">
+        <files first_dir="treescript_diff" />
+        <files file_ext="py" />
+    </changelist>
+    <changelist name="Test Fixtures and Data Providers">
+        <files first_dir="test" />
+        <files filename_prefix="conftest" />
+        <files file_ext="py" />
+    </changelist>
+    <changelist name="Test Input Package">
+        <files path_start="test/input/" />
+        <files file_ext="py" />
+    </changelist>
+    <changelist name="Test TreeScript-Diff Package">
+        <files path_start="test/" />
+        <files file_ext="py" />
+    </changelist>
+    <changelist name="Changelists Config" module="hidden">
+        <files path_start=".changelists" />
+        <files filename_prefix="sort" />
+        <files file_ext="xml" />
+    </changelist>
+</sorting>
