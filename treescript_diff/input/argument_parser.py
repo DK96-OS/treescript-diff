@@ -21,7 +21,7 @@ def parse_arguments(args: list[str]) -> ArgumentData:
     try:
         parsed_args = _define_arguments().parse_args(args)
     except SystemExit:
-        exit("Unable to Parse Arguments.")
+        exit("Unable to Parse Arguments. 2 TreeScript filenames are required.")
     return _validate_arguments(parsed_args)
 
 
@@ -41,16 +41,11 @@ def _validate_arguments(
         exit("First TreeScript argument was invalid.")
     if not _validate_name(updated := parsed_arguments.updated):
         exit("Second TreeScript argument was invalid.")
-    # Determine diff output
-    if parsed_arguments.added or parsed_arguments.removed:
-        diff_output = parsed_arguments.added
-    else:
-        diff_output = None
-    #
     return ArgumentData(
         original=original,
         updated=updated,
-        diff_output=diff_output,
+        # Output is Added, Removed, or Both.
+        diff_output=parsed_arguments.added if parsed_arguments.added or parsed_arguments.removed else None,
     )
 
 
