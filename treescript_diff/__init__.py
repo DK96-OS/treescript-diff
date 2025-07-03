@@ -1,21 +1,26 @@
-"""TreeScript Diff Methods.
+""" TreeScript Diff Methods.
 """
-from .input.input_data import InputData
-from .diff_trees import diff_trees_additions
+from treescript_diff.input.input_data import InputData
+from treescript_diff.diff_trees import diff_trees_additions, diff_trees_double
 
 
 def ts_diff(data: InputData) -> str:
-    """
-    The TreeScript Diff main entry point.
+    """ TreeScript Diff entry point.
 
-    Parameters:
-    - data (InputData) : The program input data.
+**Parameters:**
+ - data (InputData): The program input data.
 
-    Returns:
-    str - The output of the diff, formatted as requested by InputData.
+**Returns:**
+ str - The output of the diff, formatted according to InputData options.
     """
-    new_files = diff_trees_additions(
-        data.original_tree,
-        data.updated_tree,
-    )
-    return "\n".join(new_files)
+    if data.diff_output is None:
+        added, removed = diff_trees_double(data.original_tree, data.updated_tree)
+        return "\n".join(added) + "\n\n" + "\n".join(removed)
+    else:
+        return "\n".join(
+            diff_trees_additions(
+                data.original_tree, data.updated_tree,
+            ) if data.diff_output else diff_trees_additions(
+                data.updated_tree, data.original_tree
+            )
+        )

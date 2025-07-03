@@ -1,4 +1,4 @@
-"""The Difference between Trees.
+""" The Difference between Trees.
 """
 from typing import Generator
 
