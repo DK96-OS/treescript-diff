@@ -1,8 +1,14 @@
-"""Testing Dictionary Files Diff Methods
+""" Testing Dictionary Files Diff Methods
 """
-from . import get_simple_tree, get_simple_tree_add_newline, get_simple_tree_add_file, get_big_tree
+from test.conftest import get_simple_tree, get_simple_tree_add_newline, get_simple_tree_add_file, get_big_tree
 
 from treescript_diff.diff_trees import diff_trees_additions, diff_trees_double, diff_trees_removals
+
+
+def test_diff_trees_additions_empty_simple_returns_empty():
+    generator = diff_trees_additions("", get_simple_tree())
+    result = list(generator)
+    assert len(result) == 1
 
 
 def test_diff_trees_additions_simple_simple_returns_empty():
@@ -23,32 +29,20 @@ def test_diff_trees_additions_add_file():
     assert len(result) == 1
 
 
+def test_diff_trees_additions_remove_file():
+    generator = diff_trees_additions(get_simple_tree_add_file(), get_simple_tree())
+    result = list(generator)
+    assert len(result) == 0
+
+
 def test_diff_trees_additions_simple_to_big():
     generator = diff_trees_additions(get_simple_tree(), get_big_tree())
     result = list(generator)
     assert len(result) == 727
 
 
-def test_diff_trees_removals_simple_simple_returns_empty():
-    generator = diff_trees_removals(get_simple_tree(), get_simple_tree())
-    result = list(generator)
-    assert len(result) == 0
-
-
-def test_diff_trees_removals_newline():
-    generator = diff_trees_removals(get_simple_tree(), get_simple_tree_add_newline())
-    result = list(generator)
-    assert len(result) == 0
-
-
-def test_diff_trees_removals_add_file():
-    generator = diff_trees_removals(get_simple_tree(), get_simple_tree_add_file())
-    result = list(generator)
-    assert len(result) == 0
-
-
-def test_diff_trees_removals_remove_file():
-    generator = diff_trees_removals(get_simple_tree_add_file(), get_simple_tree())
+def test_diff_trees_additions_big_to_simple():
+    generator = diff_trees_additions(get_big_tree(), get_simple_tree())
     result = list(generator)
     assert len(result) == 1
 
@@ -57,6 +51,12 @@ def test_diff_trees_removals_simple_to_big():
     generator = diff_trees_removals(get_simple_tree(), get_big_tree())
     result = list(generator)
     assert len(result) == 1
+
+
+def test_diff_trees_removals_big_to_simple():
+    generator = diff_trees_removals(get_big_tree(), get_simple_tree())
+    result = list(generator)
+    assert len(result) == 727
 
 
 def test_diff_trees_double_simple_simple_returns_empty():
