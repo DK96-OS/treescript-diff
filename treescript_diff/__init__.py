@@ -16,14 +16,14 @@ def ts_diff(data: InputData) -> str:
     if data.diff_output is None:
         added, removed = diff_trees_double(data.original_tree, data.updated_tree)
         if len(added) > 0:
-            output_str = "\n".join(added) + "\n"
+            output_str = "\n".join(added)
         elif len(removed) == 0:
             return ''
         else:
-            return f"\n{'\n'.join(removed)}\n"
+            return "\n" + "\n".join(removed) + "\n"
         if len(removed) > 0:
-            output_str += f"\n{'\n'.join(removed)}\n"
-        return output_str
+            output_str += f"\n\n" + "\n".join(removed)
+        return output_str + "\n"
     else:
         return "\n".join(
             (diff_trees_additions if data.diff_output else diff_trees_removals)
