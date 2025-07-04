@@ -60,7 +60,7 @@ def test_main_updated_tree_empty_raises_exit(tmp_path):
     os.chdir(tmp_path)
     (original_treescript := tmp_path / 'original').touch()
     original_treescript.write_text('src/')
-    (updated_treescript := tmp_path / 'updated').touch()
+    (tmp_path / 'updated').touch()
     with pytest.raises(SystemExit, match='This TreeScript file was empty: updated'):
         main()
 
