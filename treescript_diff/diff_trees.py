@@ -51,4 +51,4 @@ def diff_trees_double(a: str, b: str) -> tuple[list[str], list[str]]:
     removals = []
     for n in files.keys():
         removals.append(n)
-    return (additions, removals)
+    return additions, removals
