@@ -51,6 +51,16 @@ def test_validate_input_file_fails_to_read_raises_exit():
             assert True
 
 
+def test_validate_input_file_os_error_raises_exit():
+    with pytest.MonkeyPatch().context() as c:
+        c.setattr(Path, 'exists', lambda _: True)
+        def raise_os_error():
+            raise OSError()
+        c.setattr(Path, 'read_text', lambda _: raise_os_error())
+        with pytest.raises(SystemExit, match='Failed to read string from file: '):
+            validate_input_file("file_name")
+
+
 @pytest.mark.parametrize(
     "test_input,expect",
     [
