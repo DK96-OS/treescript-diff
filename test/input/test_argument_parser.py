@@ -35,3 +35,8 @@ def test_parse_arguments_returns_input(test_input, expected):
 def test_parse_arguments_raises_exit(test_input):
 	with pytest.raises(SystemExit):
 		parse_arguments(test_input)
+        
+
+def test_parse_arguments_both_added_and_removed_raises_exit():
+	with pytest.raises(SystemExit, match='Added and Removed files are printed by default, separated by a blank line.'):
+		parse_arguments(['origin', 'updated', '-ar'])
