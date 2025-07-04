@@ -1,5 +1,8 @@
 """ Test Fixtures and Data Provider Methods.
 """
+from pathlib import Path
+
+import pytest
 
 
 def get_simple_tree():
@@ -1044,3 +1047,54 @@ y/
   extra5.txt
   extra6.txt
   extra7.txt"""
+
+
+class MockTreeScriptDirectory:
+    initial_treescript_path: str = 'initial/init.tree'
+    latest_treescript_path: str = 'latest.tree'
+
+    def __init__(
+            self,
+            tmp_path: Path,
+    ):
+        self._root = tmp_path
+
+    def create_simple_file_config(self):
+        (initial_dir := self._root / 'initial').mkdir()
+        (initial_dir / 'init.tree').touch()
+        (self._root / self.latest_treescript_path).touch()
+
+    def write_init_tree(self, content: str):
+        (self._root / 'initial' / 'init.tree').write_text(content)
+
+    def write_latest_tree(self, content: str):
+        (self._root / 'latest.tree').write_text(content)
+
+    def get_root_dir(self):
+        return self._root
+
+
+@pytest.fixture
+def mock_treescript_dir(tmp_path) -> MockTreeScriptDirectory:
+    (ts_dir := MockTreeScriptDirectory(tmp_path)).create_simple_file_config()
+    return ts_dir
+
+
+class PrintCollector: # Author: DK96-OS
+    def __init__(self):
+        self.collection: str = ''
+
+    def get_output(self) -> str:
+        return self.collection
+
+    def append_print_output(self, output: str):
+        self.collection = self.collection + output
+
+    def assert_expected(self, expected: str):
+        assert self.collection == expected
+
+    def get_mock_print(self):
+        def _collection(result, **kwargs):
+            self.append_print_output(result)
+        return _collection
+    
