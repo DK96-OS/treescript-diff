@@ -22,7 +22,7 @@ def ts_diff(data: InputData) -> str:
         else:
             return "\n" + "\n".join(removed) + "\n"
         if len(removed) > 0:
-            output_str += f"\n\n" + "\n".join(removed)
+            output_str += "\n\n" + "\n".join(removed)
         return output_str + "\n"
     else:
         return "\n".join(
