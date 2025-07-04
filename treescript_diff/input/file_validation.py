@@ -21,11 +21,11 @@ def validate_input_file(file_name: str) -> str:
     """
     file_path = Path(file_name)
     if not file_path.exists():
-        exit("The Input File does not Exist.")
+        exit(f"The tree file does not exist: {file_name}")
     try:
         data = file_path.read_text()
-    except IOError:
-        exit("Failed to Read from File.")
+    except OSError:
+        exit(f"Failed to read string from file: {file_name}")
     if _validate_name(data):
         return data
-    exit("Input was Empty")
+    exit(f"This TreeScript file was empty: {file_name}")
