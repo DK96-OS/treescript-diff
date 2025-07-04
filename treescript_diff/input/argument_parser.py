@@ -41,6 +41,8 @@ def _validate_arguments(
         exit("First TreeScript argument was invalid.")
     if not _validate_name(updated := parsed_arguments.updated):
         exit("Second TreeScript argument was invalid.")
+    if parsed_arguments.added and parsed_arguments.removed:
+        exit("Added and Removed files are printed by default, separated by a blank line.")
     return ArgumentData(
         original=original,
         updated=updated,
