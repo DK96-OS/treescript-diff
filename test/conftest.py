@@ -1,0 +1,1100 @@
+""" Test Fixtures and Data Provider Methods.
+"""
+from pathlib import Path
+
+import pytest
+
+
+def get_simple_tree():
+    return "src/\n  hello.js"
+
+
+def get_simple_tree_add_newline():
+    return "src/\n  hello.js\n"
+
+
+def get_simple_tree_add_file():
+    return "src/\n  hello.js\n  welcome.css"
+
+
+def get_big_tree():
+    return """a/
+  l/
+    l/
+      l/
+        0.txt
+        1.txt
+        2.txt
+        3.txt
+        4.txt
+        5.txt
+        6.txt
+        7.txt
+        8.txt
+        9.txt
+        10.txt
+        11.txt
+        12.txt
+        13.txt
+        14.txt
+        15.txt
+        16.txt
+        17.txt
+        18.txt
+        19.txt
+        20.txt
+        21.txt
+        22.txt
+        23.txt
+        24.txt
+        25.txt
+        26.txt
+        27.txt
+        28.txt
+        29.txt
+
+b/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  0.txt
+                  1.txt
+                  2.txt
+                  3.txt
+                  4.txt
+                  5.txt
+                  6.txt
+                  7.txt
+                  8.txt
+                  9.txt
+                  10.txt
+                  11.txt
+                  12.txt
+                  13.txt
+                  14.txt
+                  15.txt
+                  16.txt
+                  17.txt
+                  18.txt
+                  19.txt
+                  20.txt
+                  21.txt
+                  22.txt
+                  23.txt
+                  24.txt
+                  25.txt
+                  26.txt
+                  27.txt
+                  28.txt
+                  29.txt
+
+c/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                l/
+                                  l/
+                                    l/
+                                      0.txt
+                                      1.txt
+                                      2.txt
+                                      3.txt
+                                      4.txt
+                                      5.txt
+                                      6.txt
+                                      7.txt
+                                      8.txt
+                                      9.txt
+                                      10.txt
+                                      11.txt
+                                      12.txt
+                                      13.txt
+                                      14.txt
+                                      15.txt
+                                      16.txt
+                                      17.txt
+                                      18.txt
+                                      19.txt
+                                      20.txt
+                                      21.txt
+                                      22.txt
+                                      23.txt
+                                      24.txt
+                                      25.txt
+                                      26.txt
+                                      27.txt
+                                      28.txt
+                                      29.txt
+
+d/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                0.txt
+                                1.txt
+                                2.txt
+                                3.txt
+                                4.txt
+                                5.txt
+                                6.txt
+                                7.txt
+                                8.txt
+                                9.txt
+                                10.txt
+                                11.txt
+                                12.txt
+                                13.txt
+                                14.txt
+                                15.txt
+                                16.txt
+                                17.txt
+                                18.txt
+                                19.txt
+                                20.txt
+                                21.txt
+                                22.txt
+                                23.txt
+                                24.txt
+                                25.txt
+                                26.txt
+                                27.txt
+                                28.txt
+                                29.txt
+
+e/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                l/
+                                  l/
+                                    l/
+                                      l/
+                                        0.txt
+                                        1.txt
+                                        2.txt
+                                        3.txt
+                                        4.txt
+                                        5.txt
+                                        6.txt
+                                        7.txt
+                                        8.txt
+                                        9.txt
+                                        10.txt
+                                        11.txt
+                                        12.txt
+                                        13.txt
+                                        14.txt
+                                        15.txt
+                                        16.txt
+                                        17.txt
+                                        18.txt
+                                        19.txt
+                                        20.txt
+                                        21.txt
+                                        22.txt
+                                        23.txt
+                                        24.txt
+                                        25.txt
+                                        26.txt
+                                        27.txt
+                                        28.txt
+                                        29.txt
+
+f/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              0.txt
+                              1.txt
+                              2.txt
+                              3.txt
+                              4.txt
+                              5.txt
+                              6.txt
+                              7.txt
+                              8.txt
+                              9.txt
+                              10.txt
+                              11.txt
+                              12.txt
+                              13.txt
+                              14.txt
+                              15.txt
+                              16.txt
+                              17.txt
+                              18.txt
+                              19.txt
+                              20.txt
+                              21.txt
+                              22.txt
+                              23.txt
+                              24.txt
+                              25.txt
+                              26.txt
+                              27.txt
+                              28.txt
+                              29.txt
+
+g/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              0.txt
+              1.txt
+              2.txt
+              3.txt
+              4.txt
+              5.txt
+              6.txt
+              7.txt
+              8.txt
+              9.txt
+              10.txt
+              11.txt
+              12.txt
+              13.txt
+              14.txt
+              15.txt
+              16.txt
+              17.txt
+              18.txt
+              19.txt
+              20.txt
+              21.txt
+              22.txt
+              23.txt
+              24.txt
+              25.txt
+              26.txt
+              27.txt
+              28.txt
+              29.txt
+
+h/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                l/
+                                  l/
+                                    l/
+                                      l/
+                                        l/
+                                          l/
+                                            0.txt
+                                            1.txt
+                                            2.txt
+                                            3.txt
+                                            4.txt
+                                            5.txt
+                                            6.txt
+                                            7.txt
+                                            8.txt
+                                            9.txt
+                                            10.txt
+                                            11.txt
+                                            12.txt
+                                            13.txt
+                                            14.txt
+                                            15.txt
+                                            16.txt
+                                            17.txt
+                                            18.txt
+                                            19.txt
+                                            20.txt
+                                            21.txt
+                                            22.txt
+                                            23.txt
+                                            24.txt
+                                            25.txt
+                                            26.txt
+                                            27.txt
+                                            28.txt
+                                            29.txt
+
+i/
+  l/
+    l/
+      l/
+        0.txt
+        1.txt
+        2.txt
+        3.txt
+        4.txt
+        5.txt
+        6.txt
+        7.txt
+        8.txt
+        9.txt
+        10.txt
+        11.txt
+        12.txt
+        13.txt
+        14.txt
+        15.txt
+        16.txt
+        17.txt
+        18.txt
+        19.txt
+        20.txt
+        21.txt
+        22.txt
+        23.txt
+        24.txt
+        25.txt
+        26.txt
+        27.txt
+        28.txt
+        29.txt
+
+j/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                l/
+                                  0.txt
+                                  1.txt
+                                  2.txt
+                                  3.txt
+                                  4.txt
+                                  5.txt
+                                  6.txt
+                                  7.txt
+                                  8.txt
+                                  9.txt
+                                  10.txt
+                                  11.txt
+                                  12.txt
+                                  13.txt
+                                  14.txt
+                                  15.txt
+                                  16.txt
+                                  17.txt
+                                  18.txt
+                                  19.txt
+                                  20.txt
+                                  21.txt
+                                  22.txt
+                                  23.txt
+                                  24.txt
+                                  25.txt
+                                  26.txt
+                                  27.txt
+                                  28.txt
+                                  29.txt
+
+k/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                l/
+                                  0.txt
+                                  1.txt
+                                  2.txt
+                                  3.txt
+                                  4.txt
+                                  5.txt
+                                  6.txt
+                                  7.txt
+                                  8.txt
+                                  9.txt
+                                  10.txt
+                                  11.txt
+                                  12.txt
+                                  13.txt
+                                  14.txt
+                                  15.txt
+                                  16.txt
+                                  17.txt
+                                  18.txt
+                                  19.txt
+                                  20.txt
+                                  21.txt
+                                  22.txt
+                                  23.txt
+                                  24.txt
+                                  25.txt
+                                  26.txt
+                                  27.txt
+                                  28.txt
+                                  29.txt
+
+l/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        0.txt
+                        1.txt
+                        2.txt
+                        3.txt
+                        4.txt
+                        5.txt
+                        6.txt
+                        7.txt
+                        8.txt
+                        9.txt
+                        10.txt
+                        11.txt
+                        12.txt
+                        13.txt
+                        14.txt
+                        15.txt
+                        16.txt
+                        17.txt
+                        18.txt
+                        19.txt
+                        20.txt
+                        21.txt
+                        22.txt
+                        23.txt
+                        24.txt
+                        25.txt
+                        26.txt
+                        27.txt
+                        28.txt
+                        29.txt
+
+m/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              0.txt
+                              1.txt
+                              2.txt
+                              3.txt
+                              4.txt
+                              5.txt
+                              6.txt
+                              7.txt
+                              8.txt
+                              9.txt
+                              10.txt
+                              11.txt
+                              12.txt
+                              13.txt
+                              14.txt
+                              15.txt
+                              16.txt
+                              17.txt
+                              18.txt
+                              19.txt
+                              20.txt
+                              21.txt
+                              22.txt
+                              23.txt
+                              24.txt
+                              25.txt
+                              26.txt
+                              27.txt
+                              28.txt
+                              29.txt
+
+n/
+  l/
+    l/
+      l/
+        l/
+          0.txt
+          1.txt
+          2.txt
+          3.txt
+          4.txt
+          5.txt
+          6.txt
+          7.txt
+          8.txt
+          9.txt
+          10.txt
+          11.txt
+          12.txt
+          13.txt
+          14.txt
+          15.txt
+          16.txt
+          17.txt
+          18.txt
+          19.txt
+          20.txt
+          21.txt
+          22.txt
+          23.txt
+          24.txt
+          25.txt
+          26.txt
+          27.txt
+          28.txt
+          29.txt
+
+o/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    0.txt
+                    1.txt
+                    2.txt
+                    3.txt
+                    4.txt
+                    5.txt
+                    6.txt
+                    7.txt
+                    8.txt
+                    9.txt
+                    10.txt
+                    11.txt
+                    12.txt
+                    13.txt
+                    14.txt
+                    15.txt
+                    16.txt
+                    17.txt
+                    18.txt
+                    19.txt
+                    20.txt
+                    21.txt
+                    22.txt
+                    23.txt
+                    24.txt
+                    25.txt
+                    26.txt
+                    27.txt
+                    28.txt
+                    29.txt
+
+p/
+  0.txt
+  1.txt
+  2.txt
+  3.txt
+  4.txt
+  5.txt
+  6.txt
+  7.txt
+  8.txt
+  9.txt
+  10.txt
+  11.txt
+  12.txt
+  13.txt
+  14.txt
+  15.txt
+  16.txt
+  17.txt
+  18.txt
+  19.txt
+  20.txt
+  21.txt
+  22.txt
+  23.txt
+  24.txt
+  25.txt
+  26.txt
+  27.txt
+  28.txt
+  29.txt
+
+q/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              0.txt
+                              1.txt
+                              2.txt
+                              3.txt
+                              4.txt
+                              5.txt
+                              6.txt
+                              7.txt
+                              8.txt
+                              9.txt
+                              10.txt
+                              11.txt
+                              12.txt
+                              13.txt
+                              14.txt
+                              15.txt
+                              16.txt
+                              17.txt
+                              18.txt
+                              19.txt
+                              20.txt
+                              21.txt
+                              22.txt
+                              23.txt
+                              24.txt
+                              25.txt
+                              26.txt
+                              27.txt
+                              28.txt
+                              29.txt
+
+r/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              0.txt
+                              1.txt
+                              2.txt
+                              3.txt
+                              4.txt
+                              5.txt
+                              6.txt
+                              7.txt
+                              8.txt
+                              9.txt
+                              10.txt
+                              11.txt
+                              12.txt
+                              13.txt
+                              14.txt
+                              15.txt
+                              16.txt
+                              17.txt
+                              18.txt
+                              19.txt
+                              20.txt
+                              21.txt
+                              22.txt
+                              23.txt
+                              24.txt
+                              25.txt
+                              26.txt
+                              27.txt
+                              28.txt
+                              29.txt
+
+s/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          l/
+                            l/
+                              l/
+                                l/
+                                  0.txt
+                                  1.txt
+                                  2.txt
+                                  3.txt
+                                  4.txt
+                                  5.txt
+                                  6.txt
+                                  7.txt
+                                  8.txt
+                                  9.txt
+                                  10.txt
+                                  11.txt
+                                  12.txt
+                                  13.txt
+                                  14.txt
+                                  15.txt
+                                  16.txt
+                                  17.txt
+                                  18.txt
+                                  19.txt
+                                  20.txt
+                                  21.txt
+                                  22.txt
+                                  23.txt
+                                  24.txt
+                                  25.txt
+                                  26.txt
+                                  27.txt
+                                  28.txt
+                                  29.txt
+
+t/
+  l/
+    l/
+      l/
+        l/
+          0.txt
+          1.txt
+          2.txt
+          3.txt
+          4.txt
+          5.txt
+          6.txt
+          7.txt
+          8.txt
+          9.txt
+          10.txt
+          11.txt
+          12.txt
+          13.txt
+          14.txt
+          15.txt
+          16.txt
+          17.txt
+          18.txt
+          19.txt
+          20.txt
+          21.txt
+          22.txt
+          23.txt
+          24.txt
+          25.txt
+          26.txt
+          27.txt
+          28.txt
+          29.txt
+
+u/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              0.txt
+              1.txt
+              2.txt
+              3.txt
+              4.txt
+              5.txt
+              6.txt
+              7.txt
+              8.txt
+              9.txt
+              10.txt
+              11.txt
+              12.txt
+              13.txt
+              14.txt
+              15.txt
+              16.txt
+              17.txt
+              18.txt
+              19.txt
+              20.txt
+              21.txt
+              22.txt
+              23.txt
+              24.txt
+              25.txt
+              26.txt
+              27.txt
+              28.txt
+              29.txt
+
+v/
+  l/
+    l/
+      l/
+        l/
+          0.txt
+          1.txt
+          2.txt
+          3.txt
+          4.txt
+          5.txt
+          6.txt
+          7.txt
+          8.txt
+          9.txt
+          10.txt
+          11.txt
+          12.txt
+          13.txt
+          14.txt
+          15.txt
+          16.txt
+          17.txt
+          18.txt
+          19.txt
+          20.txt
+          21.txt
+          22.txt
+          23.txt
+          24.txt
+          25.txt
+          26.txt
+          27.txt
+          28.txt
+          29.txt
+
+w/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                0.txt
+                1.txt
+                2.txt
+                3.txt
+                4.txt
+                5.txt
+                6.txt
+                7.txt
+                8.txt
+                9.txt
+                10.txt
+                11.txt
+                12.txt
+                13.txt
+                14.txt
+                15.txt
+                16.txt
+                17.txt
+                18.txt
+                19.txt
+                20.txt
+                21.txt
+                22.txt
+                23.txt
+                24.txt
+                25.txt
+                26.txt
+                27.txt
+                28.txt
+                29.txt
+
+x/
+  l/
+    l/
+      l/
+        l/
+          l/
+            l/
+              l/
+                l/
+                  l/
+                    l/
+                      l/
+                        l/
+                          0.txt
+                          1.txt
+                          2.txt
+                          3.txt
+                          4.txt
+                          5.txt
+                          6.txt
+                          7.txt
+                          8.txt
+                          9.txt
+                          10.txt
+                          11.txt
+                          12.txt
+                          13.txt
+                          14.txt
+                          15.txt
+                          16.txt
+                          17.txt
+                          18.txt
+                          19.txt
+                          20.txt
+                          21.txt
+                          22.txt
+                          23.txt
+                          24.txt
+                          25.txt
+                          26.txt
+                          27.txt
+                          28.txt
+                          29.txt
+y/
+  extra1.txt
+  extra2.txt
+  extra3.txt
+  extra4.txt
+  extra5.txt
+  extra6.txt
+  extra7.txt"""
+
+
+class MockTreeScriptDirectory:
+    initial_treescript_path: str = 'initial/init.tree'
+    latest_treescript_path: str = 'latest.tree'
+
+    def __init__(
+            self,
+            tmp_path: Path,
+    ):
+        self._root = tmp_path
+
+    def create_simple_file_config(self):
+        (initial_dir := self._root / 'initial').mkdir()
+        (initial_dir / 'init.tree').touch()
+        (self._root / self.latest_treescript_path).touch()
+
+    def write_init_tree(self, content: str):
+        (self._root / 'initial' / 'init.tree').write_text(content)
+
+    def write_latest_tree(self, content: str):
+        (self._root / 'latest.tree').write_text(content)
+
+    def get_root_dir(self):
+        return self._root
+
+
+@pytest.fixture
+def mock_treescript_dir(tmp_path) -> MockTreeScriptDirectory:
+    (ts_dir := MockTreeScriptDirectory(tmp_path)).create_simple_file_config()
+    return ts_dir
+
+
+class PrintCollector: # Author: DK96-OS
+    def __init__(self):
+        self.collection: str = ''
+
+    def get_output(self) -> str:
+        return self.collection
+
+    def append_print_output(self, output: str):
+        self.collection = self.collection + output
+
+    def assert_expected(self, expected: str):
+        assert self.collection == expected
+
+    def get_mock_print(self):
+        def _collection(result, **kwargs):
+            self.append_print_output(result)
+        return _collection
+    

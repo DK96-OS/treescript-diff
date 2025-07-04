@@ -1,21 +1,34 @@
-"""Validate System Arguments into usable InputData
+""" Validate System Arguments into usable InputData.
 """
-from treescript_diff.input.argument_parser import parse_arguments
-from treescript_diff.input.file_validation import validate_input_file
-from .input_data import InputData
+from treescript_diff.input.input_data import InputData
+
+
+def _validate_name(argument) -> bool:
+    """ Determine whether an argument is a non-empty string.
+ - Does not count whitespace.
+ - Uses the strip method to remove empty space.
+
+**Parameters:**
+ - argument (str): The given argument.
+
+**Returns:**
+ bool - True if the argument qualifies as valid.
+    """
+    if argument is None or not isinstance(argument, str):
+        return False
+    elif len(argument.strip()) < 1 or not argument.isascii():
+        return False
+    return True
 
 
 def validate_arguments(args: list[str]) -> InputData:
+    """ Validate Command Line Arguments into usable InputData.
     """
-    Validate Command Line Arguments into usable InputData
-    """
+    from treescript_diff.input.argument_parser import parse_arguments
+    from treescript_diff.input.file_validation import validate_input_file
     arg_data = parse_arguments(args)
-    if not (original_tree := validate_input_file(arg_data.original)):
-        exit("Original File not found")
-    if not (updated := validate_input_file(arg_data.updated)):
-        exit("Updated File not found")
     return InputData(
-        original_tree=original_tree,
-        updated_tree=updated,
+        original_tree=validate_input_file(arg_data.original),
+        updated_tree=validate_input_file(arg_data.updated),
         diff_output=arg_data.diff_output,
     )

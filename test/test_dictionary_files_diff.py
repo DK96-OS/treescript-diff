@@ -1,6 +1,6 @@
 """Testing Dictionary Files Diff Methods
 """
-from . import get_big_tree, get_simple_tree
+from test.conftest import get_big_tree, get_simple_tree
 
 from treescript_diff.dictionary_files_diff import compare_files, load_original
 
