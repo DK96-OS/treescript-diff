@@ -1,1 +1,1 @@
-treescript-files ~= 0.2.3
+treescript-files ~= 0.2.4
