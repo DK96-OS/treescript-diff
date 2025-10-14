@@ -16,15 +16,15 @@ jobs:
       - uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: '3.13'
+          python-version: '3.14'
           cache: 'pip'
 
       - name: Install Linting Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install ruff --no-deps
+          pip install ruff==0.14.0 --no-deps
 
       - name: Show Files To Be Linted
         run: ruff check --show-files
@@ -35,4 +35,3 @@ jobs:
 
       - name: Ruff Check Grouped Format
         run: ruff check --output-format=grouped
-  
