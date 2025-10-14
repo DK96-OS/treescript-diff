@@ -28,9 +28,27 @@
         <files path_start="test/" />
         <files file_ext="py" />
     </changelist>
+    
+    <!-- Developer Tools Directories in Hidden Modules -->
+
+    <changelist name="TreeScript Builder" module="hidden">
+        <files first_dir=".ftb" />
+    </changelist>
     <changelist name="Changelists Config" module="hidden">
-        <files path_start=".changelists" />
+        <files first_dir=".changelists" />
         <files filename_prefix="sort" />
         <files file_ext="xml" />
     </changelist>
+
+    <changelist name="GitHub Workflows" module="hidden">
+        <files first_dir=".github" />
+        <files path_end="workflows" />
+        <files file_ext="yml" />
+    </changelist>
+    <changelist name="GitHub Dependabot" module="hidden">
+        <files first_dir=".github" />
+        <files filename_prefix="dependabot" />
+        <files file_ext="yml" />
+    </changelist>
+    
 </sorting>
