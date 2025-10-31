@@ -1,4 +1,4 @@
-"""The methods of a dictionary-files based diff algorithm.
+""" The methods of a dictionary-files based diff algorithm.
 """
 from typing import Generator
 
@@ -6,34 +6,34 @@ from treescript_files.input_data import InputData
 from treescript_files.tree_reader import process_input_data
 
 
-def load_original(original_tree: str) -> dict:
-    """ Convert Original TreeScript into Files, and add them to a dictionary.
+def load_original(original_tree: str) -> set[str]:
+    """ Convert Original TreeScript into Files, and add them to a set.
 
 **Parameters:**
  - original_tree (str): The original TreeScript.
 
 **Returns:**
- dict - A map containing files as keys.
+ set - A set containing files.
     """
-    files = dict()
+    files: set[str] = set[str]()
     # This is InputData to the TreeScript Files external Package
     files_input_data = InputData(
         tree_input=original_tree,
         parent_path=None
     )
     for node in process_input_data(files_input_data):
-        files[node] = ''
+        files.add(node)
     return files
 
 
 def compare_files(
-    original_files: dict,
+    original_files: set[str],
     updated_tree: str
 ) -> Generator[str, None, None]:
-    """ Compare a dictionary of the original files with the updated TreeScript.
+    """ Compare a set of the original files with the updated TreeScript.
 
 **Parameters:**
- - original_files (dict) : The Dictionary containing the original TreeScript files.
+ - original_files (set) : The Dictionary containing the original TreeScript files.
  - updated_tree (str) : The updated TreeScript to be compared for additions.
 
 **Yields:**
@@ -45,6 +45,6 @@ def compare_files(
     )
     for node in process_input_data(files_input_data):
         if node in original_files:
-            del original_files[node]
+            original_files.remove(node)
         else:
             yield node

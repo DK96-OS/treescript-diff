@@ -13,9 +13,8 @@ def diff_trees_additions(a: str, b: str) -> Generator[str, None, None]:
  - b (str) : The updated TreeScript.
 
 **Yields:**
- str - yields elements of the diff.
+ str - The elements of the diff that are added.
     """
-    # Use Dictionary-based Algorithm
     files = load_original(a)
     yield from compare_files(files, b)
 
@@ -28,7 +27,7 @@ def diff_trees_removals(a: str, b: str) -> Generator[str, None, None]:
  - b (str) : The updated TreeScript.
 
 **Yields:**
- Generator[str] - yields elements of the diff.
+ Generator[str] - The elements of the diff that were removed.
     """
     yield from diff_trees_additions(b, a)
 
@@ -43,12 +42,11 @@ def diff_trees_double(a: str, b: str) -> tuple[list[str], list[str]]:
 **Returns:**
  tuple[list[str], list[str]] - Container for the additions and removals.
     """
-    # Use Dictionary-based Algorithm
-    files = load_original(a)
-    additions = []
+    files: set[str] = load_original(a)
+    additions: list[str] = []
     for n in compare_files(files, b):
         additions.append(n)
-    removals = []
-    for n in files.keys():
+    removals: list[str] = []
+    for n in files:
         removals.append(n)
     return additions, removals
