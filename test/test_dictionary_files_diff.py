@@ -7,12 +7,12 @@ from treescript_diff.dictionary_files_diff import compare_files, load_original
 
 def test_load_original():
     result = load_original(get_simple_tree())
-    assert len(result.keys()) == 1
+    assert len(result) == 1
 
 
 def test_load_original_big_tree():
     result = load_original(get_big_tree())
-    assert len(result.keys()) == 727
+    assert len(result) == 727
 
 
 def test_compare_files_simple_tree():

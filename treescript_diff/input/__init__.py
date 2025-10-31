@@ -1,5 +1,7 @@
 """ Validate System Arguments into usable InputData.
 """
+from treescript_files.file_validation import validate_input_file
+
 from treescript_diff.input.input_data import InputData
 
 
@@ -25,7 +27,6 @@ def validate_arguments(args: list[str]) -> InputData:
     """ Validate Command Line Arguments into usable InputData.
     """
     from treescript_diff.input.argument_parser import parse_arguments
-    from treescript_diff.input.file_validation import validate_input_file
     arg_data = parse_arguments(args)
     return InputData(
         original_tree=validate_input_file(arg_data.original),
