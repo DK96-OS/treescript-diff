@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="treescript-diff",
-    version="0.1.5",
+    version="0.1.6",
     description="Determines the difference between two TreeScript files.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
