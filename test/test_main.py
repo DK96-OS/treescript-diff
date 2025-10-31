@@ -34,7 +34,7 @@ def test_main_():
 def test_main_original_tree_not_found_raises_exit(tmp_path):
     sys.argv = ['treescript-diff', 'original', 'updated']
     os.chdir(tmp_path)
-    with pytest.raises(SystemExit, match='The tree file does not exist: original'):
+    with pytest.raises(SystemExit, match='The Input File does not Exist.'):
         main()
 
 
@@ -42,7 +42,7 @@ def test_main_original_tree_empty_raises_exit(tmp_path):
     sys.argv = ['treescript-diff', 'original', 'updated']
     os.chdir(tmp_path)
     (tmp_path / 'original').touch()
-    with pytest.raises(SystemExit, match='This TreeScript file was empty: original'):
+    with pytest.raises(SystemExit, match='Input was Empty or Invalid.'):
         main()
 
 
@@ -51,7 +51,7 @@ def test_main_updated_tree_not_found_raises_exception(tmp_path):
     os.chdir(tmp_path)
     (original_treescript := tmp_path / 'original').touch()
     original_treescript.write_text('src/')
-    with pytest.raises(SystemExit, match='The tree file does not exist: updated'):
+    with pytest.raises(SystemExit, match='The Input File does not Exist.'):
         main()
 
 
@@ -61,7 +61,7 @@ def test_main_updated_tree_empty_raises_exit(tmp_path):
     (original_treescript := tmp_path / 'original').touch()
     original_treescript.write_text('src/')
     (tmp_path / 'updated').touch()
-    with pytest.raises(SystemExit, match='This TreeScript file was empty: updated'):
+    with pytest.raises(SystemExit, match='Input was Empty or Invalid.'):
         main()
 
 
