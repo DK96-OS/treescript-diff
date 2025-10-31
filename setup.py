@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="treescript-diff",
-    version="0.1.4",
+    version="0.1.5",
     description="Determines the difference between two TreeScript files.",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
@@ -18,7 +18,7 @@ setup(
     license="GPLv3",
     packages=find_packages(exclude=['test', 'test.*']),
     install_requires=[
-        'treescript-files >= 0.2.5, < 0.3',
+        'treescript-files >= 0.2.6, < 0.3',
     ],
     entry_points={
         'console_scripts': [
