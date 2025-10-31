@@ -1,6 +1,7 @@
 """ Testing Dictionary Files Diff Methods
 """
-from treescript_diff.diff_trees import diff_trees_additions, diff_trees_double, diff_trees_removals
+from treescript_diff.diff_trees import diff_trees_additions, diff_trees_double, diff_trees_removals, _load_original, \
+    _compare_files
 
 from test.conftest import get_simple_tree, get_simple_tree_add_newline, get_simple_tree_add_file, get_big_tree
 
@@ -123,3 +124,34 @@ def test_diff_trees_double_big_to_simple_returns_1_addition_and_many_removals():
     additions, removals = result[0], result[1]
     assert len(additions) == 1
     assert len(removals) == 727
+
+
+def test_load_original():
+    result = _load_original(get_simple_tree())
+    assert len(result) == 1
+
+
+def test_load_original_big_tree():
+    result = _load_original(get_big_tree())
+    assert len(result) == 727
+
+
+def test_compare_files_simple_tree():
+    original = _load_original(get_simple_tree())
+    updated = get_simple_tree()
+    result = list(_compare_files(original, updated))
+    assert len(result) == 0
+
+
+def test_compare_files_simple_tree_big_tree():
+    original = _load_original(get_simple_tree())
+    updated = get_big_tree()
+    result = list(_compare_files(original, updated))
+    assert len(result) == 727
+
+
+def test_compare_files_big_tree_simple_tree():
+    original = _load_original(get_big_tree())
+    updated = get_simple_tree()
+    result = list(_compare_files(original, updated))
+    assert len(result) == 1
