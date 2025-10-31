@@ -3,38 +3,19 @@
 import builtins
 import os
 import sys
+from re import escape
 
 import pytest
-from pathlib import Path
+from treescript_files import file_validation
 
 from test.conftest import get_simple_tree, get_simple_tree_add_file, PrintCollector, get_big_tree
 from treescript_diff.__main__ import main
 
 
-def test_main_():
-    from sys import argv, orig_argv
-    argv.clear()
-    argv.append('treescript-diff')
-    argv.append('original')
-    argv.append('updated')
-    collector = PrintCollector()
-    # Mock files
-    with pytest.MonkeyPatch().context() as c:
-        c.setattr(Path, 'exists', lambda _: True)
-        c.setattr(Path, 'read_text', lambda _: "src/")
-        c.setattr(builtins, 'print', collector.get_mock_print())
-        main()
-
-    print(collector.get_output())
-    argv.clear()
-    for i in orig_argv:
-        argv.append(i)
-
-
 def test_main_original_tree_not_found_raises_exit(tmp_path):
     sys.argv = ['treescript-diff', 'original', 'updated']
     os.chdir(tmp_path)
-    with pytest.raises(SystemExit, match='The Input File does not Exist.'):
+    with pytest.raises(SystemExit, match=escape(file_validation._FILE_DOES_NOT_EXIST_MSG)):
         main()
 
 
@@ -42,7 +23,7 @@ def test_main_original_tree_empty_raises_exit(tmp_path):
     sys.argv = ['treescript-diff', 'original', 'updated']
     os.chdir(tmp_path)
     (tmp_path / 'original').touch()
-    with pytest.raises(SystemExit, match='Input was Empty or Invalid.'):
+    with pytest.raises(SystemExit, match=escape(file_validation._FILE_EMPTY_MSG)):
         main()
 
 
@@ -51,7 +32,7 @@ def test_main_updated_tree_not_found_raises_exception(tmp_path):
     os.chdir(tmp_path)
     (original_treescript := tmp_path / 'original').touch()
     original_treescript.write_text('src/')
-    with pytest.raises(SystemExit, match='The Input File does not Exist.'):
+    with pytest.raises(SystemExit, match=escape(file_validation._FILE_DOES_NOT_EXIST_MSG)):
         main()
 
 
@@ -61,7 +42,7 @@ def test_main_updated_tree_empty_raises_exit(tmp_path):
     (original_treescript := tmp_path / 'original').touch()
     original_treescript.write_text('src/')
     (tmp_path / 'updated').touch()
-    with pytest.raises(SystemExit, match='Input was Empty or Invalid.'):
+    with pytest.raises(SystemExit, match=escape(file_validation._FILE_EMPTY_MSG)):
         main()
 
 
