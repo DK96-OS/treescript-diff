@@ -117,11 +117,13 @@ def test_main_default_simple_tree_remove_file(monkeypatch, mock_treescript_dir):
     mock_treescript_dir.write_init_tree(get_simple_tree_add_file())
     mock_treescript_dir.write_latest_tree(get_simple_tree())
     #
-    expected = """\nsrc/welcome.css\n"""
     collector = PrintCollector()
     monkeypatch.setattr(builtins, 'print', collector.get_mock_print())
     main()
-    collector.assert_expected(expected)
+    assert collector.collection in [
+        "\nsrc/welcome.css\n",
+        "\nsrc\\welcome.css\n",
+    ]
 
 
 def test_main_a_simple_tree_remove_file(monkeypatch, mock_treescript_dir):
