@@ -13,7 +13,7 @@ def load_original(original_tree: str) -> set[str]:
  - original_tree (str): The original TreeScript.
 
 **Returns:**
- set - A set containing files.
+ set[str] - A set containing files.
     """
     files: set[str] = set[str]()
     # This is InputData to the TreeScript Files external Package
@@ -37,7 +37,7 @@ def compare_files(
  - updated_tree (str) : The updated TreeScript to be compared for additions.
 
 **Yields:**
- str - The file paths.
+ str[str] - The file paths.
     """
     files_input_data = InputData(
         tree_input=updated_tree,
